@@ -1,0 +1,22 @@
+class Solution {
+    public int[][] floodFill(int[][] grid, int sr, int sc, int color) {
+        int ogColor=grid[sr][sc];
+        if(ogColor==color) return grid;
+        int rSize=grid.length,cSize=grid[0].length;
+        Queue<int[]>que=new LinkedList<>();
+        que.offer(new int[]{sr,sc});
+        while(!que.isEmpty()){
+            int[]polled=que.poll();
+            int pr=polled[0],pc=polled[1];
+            if(pr<0||pc<0||pr>=rSize||pc>=cSize||grid[pr][pc]!=ogColor)
+            continue;
+            grid[pr][pc]=color;
+            que.offer(new int[]{pr+1,pc});
+            que.offer(new int[]{pr-1,pc});
+            que.offer(new int[]{pr,pc+1});
+            que.offer(new int[]{pr,pc-1});
+        }
+        return grid;
+        
+    }
+}
