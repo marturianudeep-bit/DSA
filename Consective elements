@@ -1,0 +1,42 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        // Find minimum and maximum
+        int min = arr[0];
+        int max = arr[0];
+
+        for (int i = 1; i < n; i++) {
+            min = Math.min(min, arr[i]);
+            max = Math.max(max, arr[i]);
+        }
+
+        // For consecutive elements:
+        // max - min + 1 must be equal to n
+        if ((long) max - min + 1 != n) {
+            System.out.println("No");
+            return;
+        }
+
+        // Check for duplicates
+        HashSet<Integer> set = new HashSet<>();
+
+        for (int x : arr) {
+            if (!set.add(x)) {
+                System.out.println("No");
+                return;
+            }
+        }
+
+        System.out.println("Yes");
+    }
+}
